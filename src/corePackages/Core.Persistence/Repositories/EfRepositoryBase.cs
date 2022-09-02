@@ -19,7 +19,7 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
 
     public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate)
     {
-        Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        //Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         return await Context.Set<TEntity>().FirstOrDefaultAsync(predicate);
     }
 

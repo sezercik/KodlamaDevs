@@ -31,15 +31,21 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Upd
             }
 
             public async Task<UpdatedProgrammingLanguageDto> Handle(UpdateProgrammingLanguageCommand request, CancellationToken cancellationToken)
-            {   
-                //GETASYNC DÜZELTİLECEKTİR
-                await _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenUpdated(request.Id);
-                await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicated(request.Name);
+            {
+                //GETASYNC DÜZELTİLDİ - SIRA GETASYNC VE UPDATEASYNC BERABER KULLANMAKTA                                                      
+                ProgrammingLanguage? programmingLanguage = await _programmingLanguageRepository.GetAsync(p => p.Id == request.Id);
+                programmingLanguage.Name = request.Name;
 
-                ProgrammingLanguage mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
-                ProgrammingLanguage updatedProgrammingLanguage = await _programmingLanguageRepository.UpdateAsync(mappedProgrammingLanguage);
+                _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenUpdated(programmingLanguage);
+                await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicated(programmingLanguage.Name);
+
+                //programmingLanguage = _mapper.Map<ProgrammingLanguage>(request); -> direkt maplenirse hata veriyor
+
+                ProgrammingLanguage updatedProgrammingLanguage = await _programmingLanguageRepository.UpdateAsync(programmingLanguage);
+
                 UpdatedProgrammingLanguageDto updatedProgrammingLanguageDto = _mapper.Map<UpdatedProgrammingLanguageDto>(updatedProgrammingLanguage);
                 return updatedProgrammingLanguageDto;
+
             }
 
         }

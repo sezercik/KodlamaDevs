@@ -34,10 +34,10 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules
         }
 
         //FOR UPDATE OPERATION
-        public async Task ProgrammingLanguageShouldExistWhenUpdated(int Id)
+        public void  ProgrammingLanguageShouldExistWhenUpdated(ProgrammingLanguage programmingLanguage)
         {
-            ProgrammingLanguage? result = await _programmingLanguageRepository.GetAsync(p => p.Id == Id);
-            if (result == null) throw new BusinessException("This Programming Language has not exist");
+            //ProgrammingLanguage? result = await _programmingLanguageRepository.GetAsync(p => p.Id == Id);
+            if (programmingLanguage == null) throw new BusinessException("This Programming Language has not exist");
 
         }
 

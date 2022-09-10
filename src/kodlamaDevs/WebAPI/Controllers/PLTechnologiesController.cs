@@ -1,6 +1,4 @@
-﻿
-
-using Core.Application.Requests;
+﻿using Core.Application.Requests;
 using Core.Persistence.Dynamic;
 using Kodlama.io.Devs.Application.Features.PLTechnologies.Commands.CreatePLTechnology;
 using Kodlama.io.Devs.Application.Features.PLTechnologies.Commands.DeletePLTechnology;
@@ -10,11 +8,6 @@ using Kodlama.io.Devs.Application.Features.PLTechnologies.Models;
 using Kodlama.io.Devs.Application.Features.PLTechnologies.Queries.GetByIdPLTechnology;
 using Kodlama.io.Devs.Application.Features.PLTechnologies.Queries.GetListPLTechnology;
 using Kodlama.io.Devs.Application.Features.PLTechnologies.Queries.GetListPLTechnologyByDynamic;
-using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
-using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.DeleteProgrammingLanguage;
-using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
-using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Dtos;
-using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetByIdProgrammingLanguage;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

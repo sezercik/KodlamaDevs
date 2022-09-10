@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Kodlama.io.Devs.Application.Features.PLTechnologies.Profiles
 {
-    public class MappingProfiles:Profile
+    public class MappingProfiles:AutoMapper.Profile
     {
         public MappingProfiles()
         {

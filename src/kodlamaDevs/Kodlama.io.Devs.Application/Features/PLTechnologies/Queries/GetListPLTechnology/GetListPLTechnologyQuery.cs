@@ -38,7 +38,6 @@ namespace Kodlama.io.Devs.Application.Features.PLTechnologies.Queries.GetListPLT
                                    size: request.PageRequest.PageSize
                                     );
 
-
                     
 
                 PLTechnologyListModel mappedPLTechnologyListModel = _mapper.Map<PLTechnologyListModel>(pLTechonology);

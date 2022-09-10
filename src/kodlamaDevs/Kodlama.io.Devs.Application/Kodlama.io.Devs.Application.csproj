@@ -21,12 +21,10 @@
 
   <ItemGroup>
     <Folder Include="Features\PLTechnologies\Rules\" />
-    <Folder Include="Features\Profiles\Commands\" />
-    <Folder Include="Features\Profiles\Dtos\" />
-    <Folder Include="Features\Profiles\Models\" />
     <Folder Include="Features\Profiles\Rules\" />
-    <Folder Include="Features\Profiles\Queries\" />
-    <Folder Include="Features\Profiles\Profiles\" />
+    <Folder Include="Features\Users\Commands\DeleteUser\" />
+    <Folder Include="Features\Users\Commands\UpdateUser\" />
+    <Folder Include="Features\Users\Rules\" />
   </ItemGroup>
 
 </Project>

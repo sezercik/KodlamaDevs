@@ -3,16 +3,17 @@ using Core.Security.Dtos;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using Core.Security.JWT;
+using Kodlama.io.Devs.Application.Features.Users.Dtos;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kodlama.io.Devs.Application.Features.Users.Commands.CreateUser
 {
-    public class CreateUserCommand :IRequest<AccessToken>
+    public class CreateUserCommand :IRequest<CreatedUserDto>
     {
         public UserForRegisterDto UserForRegisterDto { get; set; }
-        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AccessToken>
+        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, CreatedUserDto>
         {
             private readonly IMapper _mapper;
             private readonly IUserRepository _userRepository;
@@ -27,7 +28,7 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.CreateUser
                 _tokenHelper = tokenHelper;
             }
 
-            public async Task<AccessToken> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            public async Task<CreatedUserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 //[TODO] business rules ile email kontrol et
                 HashingHelper.CreatePasswordHash(request.UserForRegisterDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -44,14 +45,15 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.CreateUser
                     new UserOperationClaim  { UserId = createdUser.Id, OperationClaimId = 1 }
                 );
 
-                var userOperationClaims = await _userOperationClaimRepository
-                    .GetListAsync(o => o.UserId == createdUser.Id,
-                    include: u => u.Include(c => c.OperationClaim),
-                    cancellationToken: cancellationToken
-                    );
+                CreatedUserDto createdUserDto = _mapper.Map<CreatedUserDto>(createdUser);
+                //var userOperationClaims = await _userOperationClaimRepository
+                //    .GetListAsync(o => o.UserId == createdUser.Id,
+                //    include: u => u.Include(c => c.OperationClaim),
+                //    cancellationToken: cancellationToken
+                //    );
 
-                AccessToken accessToken = _tokenHelper.CreateToken(createdUser, userOperationClaims.Items.Select(x => x.OperationClaim).ToList());
-                return accessToken;
+                //AccessToken accessToken = _tokenHelper.CreateToken(createdUser, userOperationClaims.Items.Select(x => x.OperationClaim).ToList());
+                return createdUserDto;
 
             }
         }

@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Add([FromBody] CreateUserCommand createUserCommand)
         {
-            AccessToken result = await Mediator.Send(createUserCommand);
+            CreatedUserDto result = await Mediator.Send(createUserCommand);
             return Created("", result);
         }
 

@@ -46,14 +46,7 @@ namespace Kodlama.io.Devs.Application.Features.Users.Commands.CreateUser
                 );
 
                 CreatedUserDto createdUserDto = _mapper.Map<CreatedUserDto>(createdUser);
-                //var userOperationClaims = await _userOperationClaimRepository
-                //    .GetListAsync(o => o.UserId == createdUser.Id,
-                //    include: u => u.Include(c => c.OperationClaim),
-                //    cancellationToken: cancellationToken
-                //    );
-
-                //AccessToken accessToken = _tokenHelper.CreateToken(createdUser, userOperationClaims.Items.Select(x => x.OperationClaim).ToList());
-                return createdUserDto;
+               return createdUserDto;
 
             }
         }

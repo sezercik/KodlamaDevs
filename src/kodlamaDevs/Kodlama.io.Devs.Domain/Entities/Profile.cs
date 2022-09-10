@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Repositories;
+using Core.Security.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Kodlama.io.Devs.Domain.Entities
         public int UserId { get; set; }
         public string GithubAddress { get; set; }
         //İleri de linkedin, twitter gibi hesapların da eklenmesi istenirse, buradan eklenebilir
-
+        public virtual User? User { get; set; }
         public Profile()
         {
 
